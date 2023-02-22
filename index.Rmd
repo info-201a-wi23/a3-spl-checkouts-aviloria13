@@ -3,84 +3,86 @@ title: "A3: SPL Library Checkouts"
 output: html_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+
+# load necessary library
+library("dplyr")
+library("ggplot2")
+library("scales")
+library("knitr")
+library("stringr")
+
+
+# load checkout dataframe into variable `spl_df`
+spl_df <- read.csv("/Users/aaliyahviloria/Desktop/INFO201/a3-spl-checkouts-aviloria13/2022-2023-All-Checkouts-SPL-Data.csv", stringsAsFactors = FALSE)
+
+# source all R files
+source('analysis.R')
+```
+
 ### Introduction
 
-An introduction of the data and a description of the trends/books/items you are choosing to analyze (and why!)
+The data displayed is from a library circulation dataset published by the Seattle Public Library. The specific dataset I chose to work with holds all items check out from January 2022 to January of 2023. I have decided to look at books created by authors Dr.Seuss, and Stephen King, and look at the trends in the number of books checked out that are written by these two authors. To be more precise, I am going to to calculate the sum checkouts for each month, as well as the average number of checkouts, and compare the sum checkouts for each month to the average, for each author. I will then compare each other's sum checkouts per month, to each other. I decided to look at the data of these two authors, to compare the trends in checkouts of boks catered to kids, versus books catered to adults.
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
-
-These will likely be calculated using your DPLYR skills, answering questions such as:
-
-- What is the average number of checkouts for each item?
-- What is the month or year with the most/least checkouts for a book that you're interested in?
-- What is the month or year with the most/least checkouts for ebooks?
-- How has the number of print book checkouts changed over time?
-
-Feel free to calculate and report values that you find relevant.
+This Seattle Public Library dataset has recorded `r sum_info$total_checkouts_2022` total checkouts in the year 2022. However, my data collection specifically involves books by Dr.Seuss and Stephen King. In terms of books written by Dr.Seuss, he has had a total of `r sum_info$Seuss_total` checkouts, and an average of `r sum_info$Seuss_avg` checkouts per month in the year 2022. The least number of checkouts per month, `r sum_info$Seuss_least_books` occurred in month `r sum_info$Seuss_least_month`, and the most checkouts, `r sum_info$Seuss_most_books`, occurred in month `r sum_info$Seuss_most_month`, of the 2022 year. As for Stephen King, he has had a total of `r sum_info$Stephen_total` checkouts, and an average of `r sum_info$Stephen_avg` checkouts per month in the year 2022. The least number of checkouts per month, `r sum_info$Stephen_least_books` occurred in month `r sum_info$Stephen_least_month`, and the most checkouts, `r sum_info$Stephen_most_books`, occurred in month `r sum_info$Stephen_most_month`, of the 2022 year.    
 
 ### The Dataset
 
-- Who collected/published the data?  
-- What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
-- How was the data collected or generated?  
-- Why was the data collected?  
-- What, if any, ethical questions do you need to consider when working with this data?  
-- What are possible limitations or problems with this data?   (at least 200 words)
+Who collected/published the data?  
+
+* The data was published by The Seatte Public Library.
+
+What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
+
+* This dataset has `r sum_info$total_checkouts`, holds data from `r sum_info$earliest_date` to `r sum_info$latest_date`, and includes records of both paper, ebook, and audio book types.
+
+How was the data collected or generated?  
+
+* The data is collected/updated monthly on or about the 6th day of the month with the previous month's data.
+
+Why was the data collected?  
+
+* The data was collected to keep track of checkouts at The Seattle Public Library, tracking the creator, publisher, isbn, checkout month and year, and more features.
+
+What, if any, ethical questions do you need to consider when working with this data?  
+
+* One question is whether names and personal information about those who checkout these books are able to be found/tracked by anyone, resulting in privacy issues.
+
+What are possible limitations or problems with this data?   (at least 200 words)
+
+* One limitation is the checkout date, specifically, the record of a specific day of the month. If the Seattle Public Library wanted to specifically see when a book was checked out within a certain month, or someone who checked out a book from the Seattle Public Library wanted to remember when they checked out their book, they would not be able to find such information, as they only have records on the checkout month and year.
+
+* Another limitation comes from the blank subject headings for older checkouts. Because historic checkouts for were combined with current Horizon record details in December 2016, if a Horizon record for a book was not present as of December 2016, the subject heading would be left blank (as stated in the "Checkouts by Title FAQ"). Because this data comes from multiple sources (to get current and historical data), the congregation of information may lead to misinformation (repeated records or no records for a title that should have records).
+
+* Additionally, because this dataset only accounts for checkouts, renewals of physical items aren't being recorded, therefore a book may seem to have been checked out for a shorter period than it actually was checked out for, leading to another "hole" in the records.
 
 
-### First Trends Over Time Chart
+### Chart 1: Dr.Seuss Book Checkouts per Month in 2022
+```{r Seuss_chart, fig.width=12}
+Seuss_chart
+```
+Make sure to describe why you included the chart, and what patterns emerged
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+The first chart that you will create and include will show the trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!).
+This first chart
 
-The first chart that you will create and include will show the trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, warning = FALSE, code = readLines("chart1_example.R")}
+### Chart 2: Stephen King Book Checkouts per Month in 2022
+```{r Stephen_chart, fig.width=12}
+Stephen_chart
 ```
 
-### Second Trends Over Time Chart
+Make sure to describe why you included the chart, and what patterns emerged
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+The second chart that you will create and include will show another trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). 
 
-The second chart that you will create and include will show another trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
 
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+### Chart 3: Dr.Seuss vs. Stephen King Checkouts in 2022
+```{r author_combo_chart, fig.width=12}
+author_combo_chart
 ```
 
-### Your Choice
-
-The last chart is up to you. It could be a line plot, scatter plot, histogram, bar plot, stacked bar plot, and more. Here are some requirements to help guide your design:
-
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
-```
-
+Rmd file includes why you included the chart and what patterns emerged
 
