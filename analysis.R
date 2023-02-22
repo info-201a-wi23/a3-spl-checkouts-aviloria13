@@ -4,7 +4,7 @@ library("ggplot2")
 library("scales")
 
 # Load in the data
-spl_df <- read.csv("2022-2023-All-Checkouts-SPL-Data.csv", stringsAsFactors = FALSE)
+spl_df <- read.csv("/Users/aaliyahviloria/Desktop/INFO201/a3-spl-checkouts-aviloria13/2022-2023-All-Checkouts-SPL-Data.csv", stringsAsFactors = FALSE)
 spl_df <- spl_df %>% mutate(date = paste0(CheckoutYear, "-", CheckoutMonth, "-01"))
 
 
