@@ -16,6 +16,8 @@ library("stringr")
 
 # load checkout dataframe into variable `spl_df`
 spl_df <- read.csv("/Users/aaliyahviloria/Desktop/INFO201/a3-spl-checkouts-aviloria13/2022-2023-All-Checkouts-SPL-Data.csv", stringsAsFactors = FALSE)
+spl_df <- spl_df %>% mutate(date = paste0(CheckoutYear, "-", CheckoutMonth, "-01"))
+
 
 # source all R files
 source('analysis.R')
@@ -64,19 +66,15 @@ What are possible limitations or problems with this data?   (at least 200 words)
 ```{r Seuss_chart, fig.width=12}
 Seuss_chart
 ```
-Make sure to describe why you included the chart, and what patterns emerged
 
-The first chart that you will create and include will show the trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!).
-This first chart
+This first chart displays trends in checkouts of books created by Dr.Seuss, because I wanted to specifically see a trend in books catered to kids (children's literature). With this chart, you can compare the checkouts per month in the year 2022, to the average number of Dr.Seuss book checkouts. From this graph, you can see that although the number of checkouts were far greater than the average in the first 4 months, there was a huge plunge in checkouts in the 7th month, and the number of checkouts continued to be below average from months 5 to 12. Overall, there was a decrease in checkouts of Dr.Seuss books in the year 2022. 
 
 ### Chart 2: Stephen King Book Checkouts per Month in 2022
 ```{r Stephen_chart, fig.width=12}
 Stephen_chart
 ```
 
-Make sure to describe why you included the chart, and what patterns emerged
-
-The second chart that you will create and include will show another trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). 
+This second chart displays trends in checkouts of books created by Stephen King, because I wanted to also see a trend in books catered to adults (fiction, suspense, crime). With this chart, you can compare the checkouts per month in the year 2022, to the average number of Stephen King book checkouts. From this graph, you can see that the number of checkouts were below average in the first 7 months, but an increase in checkouts began soon after, and the number of checkouts was above average from months 8 to 11, and rose greatly in month 10. Unfortunately for King, there was a slight decrease in checkouts from months 11 and 12. However, overall, there was an increase in checkouts of Stephen King books in the year 2022.
 
 
 ### Chart 3: Dr.Seuss vs. Stephen King Checkouts in 2022
@@ -84,5 +82,5 @@ The second chart that you will create and include will show another trend over t
 author_combo_chart
 ```
 
-Rmd file includes why you included the chart and what patterns emerged
+This third chart was included to compare the two authors/genres/trends to each other, after having compared the authors' number of checkouts to the average number of their own book checkouts. In creating this chart, one can not only see the difference in the number of checkouts overall (checkouts for Stephen King were much greater than Dr.Seuss - evenly scoring more than double the checkouts of Dr.Seuss' books), as well as be able to see when the checkouts increased and decreased for each author. It's interesting to see that while Dr.Seuss book checkouts increased in about the first half of the year, Stephen King's checkouts decreased at the same time, and they reversed roles in the second half of the year. It brings more curiosity to see if the time of the year corresponds to an increase of interest in different genres of books, but it is interesting enough to see how the two authors have compared.
 
